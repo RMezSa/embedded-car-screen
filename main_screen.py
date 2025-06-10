@@ -8,6 +8,8 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.core.window import Window
 from kivy.clock import Clock
+from pathlib import Path
+
 
 from datetime import datetime
 
@@ -69,10 +71,13 @@ class MainScreen(Screen):
         grid = GridLayout(cols=3, spacing=20, size_hint=(None, None))
         grid.bind(minimum_size=grid.setter('size'))
 
+        
+        BASE_DIR = Path(__file__).resolve().parent
+        ASSETS_PATH = BASE_DIR / 'assets'
         buttons_info = [
-            ('SPOTIFY', 'spotify', '/home/roberd/Downloads/spotify.png'),
-            ('REVERSA', 'camara', '/home/roberd/Downloads/park.png'),
-            ('MAPS', 'scrcpy', '/home/roberd/Downloads/maps.png')
+            ('SPOTIFY', 'spotify', str(ASSETS_PATH / 'spotify.png')),
+            ('REVERSA', 'camara', str(ASSETS_PATH / 'park.png')),
+            ('MAPS', 'scrcpy', str(ASSETS_PATH / 'maps.png'))
         ]
 
         for text, screen_name, image_path in buttons_info:
